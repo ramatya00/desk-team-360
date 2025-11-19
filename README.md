@@ -1,73 +1,106 @@
-# React + TypeScript + Vite
+# Campaign Butler — Landing Page (React + Vite + Tailwind)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single page layout built from a design brief. Implemented with React + Vite and Tailwind CSS. Includes all sections from hero to footer, with carousels, pricing, CTA form, and accessibility/SEO considerations.
 
-Currently, two official plugins are available:
+Live demo: https://desk-team-360-design.vercel.app
+Repository: https://github.com/ramatya00/desk-team-360
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Quick Start
 
-## React Compiler
+- Prereq: Node 18+ and npm (or pnpm/yarn)
+- Install: `npm install`
+- Dev server: `npm run dev`
+- Build: `npm run build`
+- Preview build: `npm run preview`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19 + TypeScript
+- Vite 7 (fast dev server and optimized builds)
+- Tailwind CSS v4 (utility-first styling; purge by default)
+- lucide-react (icons)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+  components/
+    Navbar.tsx
+    Hero.tsx
+    Section-1.tsx
+    Section-2.tsx
+    Section-3.tsx   // Testimonial carousel
+    Section-4.tsx   // Campaign Toolkit slider
+    Section-5.tsx   // Experience + 4 cards grid
+    Section-6.tsx   // Pricing + CTA form + image slice
+    Footer.tsx
+  assets/images/
+    conncet.svg
+    people-1.jpeg
+    people-2.jpeg
+    people-3.jpeg
+  App.tsx           // Page composition
+  main.tsx          // React bootstrap
+  index.css         // Tailwind import
+index.html          // Meta/SEO
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Implementation Notes
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Hero: headline, supporting copy, domain search form, hero illustration, quick links.
+- Section-1: The Challenge/Solution split with SVG visuals.
+- Section-2: Reason-to-believe section with icon bullets.
+- Section-3: Testimonial carousel (prev/next, side previews, metric badge, quote block).
+- Section-4 (CampaignToolkit): Category slider with bullets and image; dots + arrow navigation.
+- Section-5 (Experience): Dark experience panel with orbiting icons; light grid of 4 cards.
+- Section-6: Pricing cards; CTA block with controlled form inputs; supporting image/text slice.
+- Footer: Links, socials, and scroll-to-top button.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Why React + Tailwind
+
+- React: Clear component boundaries per section, straightforward state for carousels/forms, easy to scale into modules.
+- Tailwind: Rapid iteration, consistent spacing/typography, responsive utilities, minimal production CSS.
+
+## Modularity (if part of a larger project)
+
+- Extract UI primitives: `Button`, `Card`, `Badge`, `IconBullet`, `SectionTitle`.
+- Group features: `Testimonials` (card + controls), `Toolkit` (slide + dots), `Pricing` (card), `CTA` (LeadForm).
+- Move copy to `/src/content/*.ts` to separate content from layout.
+- Introduce routing later if multi-page is needed.
+
+## Performance, Accessibility, SEO
+
+- Performance: Vite asset imports for images; consider `loading="lazy"` for below-the-fold images; small CSS via Tailwind purge.
+- Accessibility: Descriptive button labels; meaningful `alt`; keyboard focus and tab order validated on interactive elements.
+- SEO: Added `<title>`, meta description, OpenGraph/Twitter tags, robots, and canonical in `index.html`.
+
+## Deployment
+
+- Vercel
+  - Import repo → Framework: Vite
+  - Build: `npm run build` | Output: `dist`
+- Netlify
+  - New site from Git
+  - Build: `npm run build` | Publish directory: `dist`
+- GitHub Pages
+  - `npm run build`, publish `dist` via action or `gh-pages` branch.
+
+## Deliverables (for email)
+
+- Project folder or repo link
+- Live site URL (Vercel/Netlify)
+- Short video (2–4 min) covering:
+  - Code and layout structure
+  - Why this stack
+  - How you’d modularize further
+  - Perf, accessibility, SEO considerations
+
+## Video Script Outline
+
+1. Intro and assignment summary
+2. Stack choice (React + Vite + Tailwind)
+3. Walkthrough: `App.tsx` and key components (carousel logic, CTA form)
+4. Modularity plan and content separation
+5. Perf/A11y/SEO highlights
+6. Demo and live link; future refinements
+
