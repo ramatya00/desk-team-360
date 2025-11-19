@@ -2,7 +2,9 @@
 
 A single page layout built from a design brief. Implemented with React + Vite and Tailwind CSS. Includes all sections from hero to footer, with carousels, pricing, CTA form, and accessibility/SEO considerations.
 
-Live demo: https://desk-team-360-design.vercel.app
+Live demo: https://desk-team-360.vercel.app
+
+
 Repository: https://github.com/ramatya00/desk-team-360
 
 ## Quick Start
